@@ -8,19 +8,40 @@ Works with **Claude Code**, **Codex**, **Claude Desktop**, **Cursor**, **VS Code
 
 ## Prerequisites
 
-You need a Meta access token with `ads_read` permission and your Ad Account ID.
+You need a **System User Token** (non-expiring) and your **Ad Account ID**.
 
 | Variable | Description |
 | --- | --- |
-| `META_ACCESS_TOKEN` | User token, long-lived token, or System User token |
+| `META_ACCESS_TOKEN` | System User Token generated in Business Manager |
 | `META_AD_ACCOUNT_ID` | Ad account ID (with or without `act_` prefix) |
 
-### Getting your credentials
+### Step 1 — Create a Meta App
 
-1. Go to [Meta Business Suite](https://business.facebook.com/) → Settings → Users → System Users
-2. Create a System User with `ads_read` permission
-3. Generate a token — this won't expire
-4. Copy your Ad Account ID from Ads Manager URL: `act_XXXXXXXXX`
+1. Go to [developers.facebook.com](https://developers.facebook.com/) → **My Apps** → **Create App**
+2. Use case: **Other** → App type: **Business**
+3. Name it (e.g. `mcp-meta-ads`), set contact email
+4. Associate with your **Business Manager** (Business Portfolio)
+5. In the app dashboard, find **Marketing API** and click **Set Up**
+
+### Step 2 — Create a System User
+
+1. Go to [business.facebook.com](https://business.facebook.com/) → **Business Settings**
+2. Navigate to **Users → System Users** → click **Add**
+3. Name: `mcp-ads-reader` — Role: **Admin**
+4. Click the system user → **Add Assets** → **Ad Accounts**
+5. Select your ad account → permission level: **View performance**
+
+### Step 3 — Generate the Token
+
+1. On the System User page, click **Generate New Token**
+2. Select the app you created in Step 1
+3. Check the scopes: **`ads_read`** and **`business_management`**
+4. Click **Generate Token**
+5. **Copy it immediately** — it's only shown once
+
+### Step 4 — Find your Ad Account ID
+
+Copy from the Ads Manager URL: `act_XXXXXXXXX`, or from Business Settings → Ad Accounts.
 
 ## Installation
 
@@ -157,9 +178,14 @@ Add to `~/.codeium/windsurf/mcp_config.json`:
 
 ## Authentication
 
-The server uses a static Bearer token (no OAuth flow). Pass your `META_ACCESS_TOKEN` as an environment variable. The token is sent as a query parameter per the Graph API convention.
+The server uses a **System User Token** — a non-expiring token generated in Meta Business Manager. No OAuth flow is needed. The token is passed as a query parameter per the Graph API convention.
 
-For production use, create a **System User** token in Business Manager — these don't expire.
+The token may be invalidated if:
+- The app is deactivated or deleted
+- The System User is removed from Business Manager
+- Permissions are revoked or Meta policies are violated
+
+If this happens, the server returns a clear error message asking you to regenerate the token.
 
 ## License
 

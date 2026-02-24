@@ -26,6 +26,13 @@ export async function apiRequest(endpoint, queryParams) {
         if (response.status === 429 || body.error?.code === 32) {
             throw new MetaApiError(429, "Rate limit exceeded. Try again in a moment.");
         }
+        if (body.error?.code === 190) {
+            const sub = body.error.error_subcode;
+            const hint = sub === 463 || sub === 467
+                ? " Token has expired — generate a new System User token in Business Manager."
+                : " Check your META_ACCESS_TOKEN or generate a new one in Business Manager → System Users.";
+            throw new MetaApiError(401, `Authentication failed: ${msg}.${hint}`);
+        }
         throw new MetaApiError(response.status, `Meta API error (${response.status}): ${msg}`);
     }
     return (await response.json());
