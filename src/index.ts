@@ -7,7 +7,7 @@ import { registerInsightTools } from "./tools/insights.js";
 import { registerObjectTools } from "./tools/objects.js";
 
 const server = new McpServer({
-  name: "mcp-meta-ads",
+  name: "mcp-meta-insights",
   version: "1.0.0",
 });
 
@@ -17,7 +17,7 @@ registerObjectTools(server);
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("mcp-meta-ads server running on stdio");
+  console.error("mcp-meta-insights server running on stdio");
 }
 
 main().catch((error) => {

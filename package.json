@@ -1,10 +1,10 @@
 {
-  "name": "@paulofroes/mcp-meta-ads",
+  "name": "@paulofroes/mcp-meta-insights",
   "version": "1.0.0",
-  "description": "MCP server that wraps the meta-ads API as semantic tools for LLM agents",
+  "description": "MCP server that wraps the Meta Marketing API as semantic tools for LLM agents",
   "type": "module",
   "bin": {
-    "mcp-meta-ads": "build/index.js"
+    "mcp-meta-insights": "build/index.js"
   },
   "files": [
     "build"
@@ -15,7 +15,7 @@
   },
   "keywords": [
     "mcp",
-    "meta-ads",
+    "meta-insights",
     "claude",
     "ai",
     "llm"
@@ -24,11 +24,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/paulofroes/mcp-meta-ads.git"
+    "url": "git+https://github.com/paulofroes/mcp-meta-insights.git"
   },
-  "homepage": "https://github.com/paulofroes/mcp-meta-ads#readme",
+  "homepage": "https://github.com/paulofroes/mcp-meta-insights#readme",
   "bugs": {
-    "url": "https://github.com/paulofroes/mcp-meta-ads/issues"
+    "url": "https://github.com/paulofroes/mcp-meta-insights/issues"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.0",

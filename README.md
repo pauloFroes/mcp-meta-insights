@@ -1,4 +1,6 @@
-# mcp-meta-ads
+<img src="assets/meta-logo.jpg" alt="Meta" width="200">
+
+# mcp-meta-insights
 
 MCP server that wraps the [Meta Marketing API](https://developers.facebook.com/docs/marketing-apis/) (Graph API v25.0) as semantic tools for LLM agents.
 
@@ -19,7 +21,7 @@ You need a Meta **access token** with `ads_read` permission and your **Ad Accoun
 
 1. Go to [developers.facebook.com](https://developers.facebook.com/) → **My Apps** → **Create App**
 2. Use case: **Other** → App type: **Business**
-3. Name it (e.g. `mcp-meta-ads`), set contact email
+3. Name it (e.g. `mcp-meta-insights`), set contact email
 4. Associate with your **Business Manager** (Business Portfolio)
 5. In the app dashboard, find **Marketing API** and click **Set Up**
 
@@ -100,11 +102,11 @@ https://graph.facebook.com/v25.0/oauth/access_token?
 ### Claude Code
 
 ```bash
-claude mcp add meta-ads \
+claude mcp add meta-insights \
   --transport stdio \
   -e META_ACCESS_TOKEN=your-token \
   -e META_AD_ACCOUNT_ID=your-account-id \
-  -- npx -y github:pauloFroes/mcp-meta-ads
+  -- npx -y github:pauloFroes/mcp-meta-insights
 ```
 
 ### Codex
@@ -112,9 +114,9 @@ claude mcp add meta-ads \
 Add to your Codex configuration:
 
 ```toml
-[mcp_servers.meta-ads]
+[mcp_servers.meta-insights]
 command = "npx"
-args = ["-y", "github:pauloFroes/mcp-meta-ads"]
+args = ["-y", "github:pauloFroes/mcp-meta-insights"]
 env_vars = ["META_ACCESS_TOKEN", "META_AD_ACCOUNT_ID"]
 ```
 
@@ -125,9 +127,9 @@ Add to `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "meta-ads": {
+    "meta-insights": {
       "command": "npx",
-      "args": ["-y", "github:pauloFroes/mcp-meta-ads"],
+      "args": ["-y", "github:pauloFroes/mcp-meta-insights"],
       "env": {
         "META_ACCESS_TOKEN": "your-token",
         "META_AD_ACCOUNT_ID": "your-account-id"
@@ -144,9 +146,9 @@ Add to `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "meta-ads": {
+    "meta-insights": {
       "command": "npx",
-      "args": ["-y", "github:pauloFroes/mcp-meta-ads"],
+      "args": ["-y", "github:pauloFroes/mcp-meta-insights"],
       "env": {
         "META_ACCESS_TOKEN": "your-token",
         "META_AD_ACCOUNT_ID": "your-account-id"
@@ -163,9 +165,9 @@ Add to `.vscode/mcp.json` in your project:
 ```json
 {
   "servers": {
-    "meta-ads": {
+    "meta-insights": {
       "command": "npx",
-      "args": ["-y", "github:pauloFroes/mcp-meta-ads"],
+      "args": ["-y", "github:pauloFroes/mcp-meta-insights"],
       "env": {
         "META_ACCESS_TOKEN": "your-token",
         "META_AD_ACCOUNT_ID": "your-account-id"
@@ -182,9 +184,9 @@ Add to `~/.codeium/windsurf/mcp_config.json`:
 ```json
 {
   "mcpServers": {
-    "meta-ads": {
+    "meta-insights": {
       "command": "npx",
-      "args": ["-y", "github:pauloFroes/mcp-meta-ads"],
+      "args": ["-y", "github:pauloFroes/mcp-meta-insights"],
       "env": {
         "META_ACCESS_TOKEN": "your-token",
         "META_AD_ACCOUNT_ID": "your-account-id"
