@@ -189,10 +189,10 @@ Add to `~/.codeium/windsurf/mcp_config.json`:
 All methods require a **Meta App**. If you don't have one yet:
 
 1. Go to [developers.facebook.com](https://developers.facebook.com/) → **My Apps** → **Create App**
-2. Use case: **Other** → App type: **Business**
-3. Name it (e.g. `mcp-meta-marketing`), set contact email
+2. Name it (e.g. `ads-marketing-tool`) — Meta blocks brand terms like "meta", "fb", "insta" in app names
+3. In **Use cases**, select **"Create and manage ads with the Marketing API"** (the first option under Featured)
 4. Associate with your **Business Manager** (Business Portfolio)
-5. In the app dashboard, find **Marketing API** and click **Set Up**
+5. Complete the remaining steps and create the app
 
 Then choose one of the methods below:
 
