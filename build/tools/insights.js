@@ -49,7 +49,7 @@ export function registerInsightTools(server) {
                 ...args,
                 fields: args.fields || DEFAULT_FIELDS,
             });
-            const data = await apiRequest(`/${AD_ACCOUNT_ID}/insights`, params);
+            const data = await apiRequest(`/${AD_ACCOUNT_ID}/insights`, "GET", undefined, params);
             return toolResult(data);
         }
         catch (error) {
@@ -74,7 +74,7 @@ export function registerInsightTools(server) {
                 ...args,
                 fields: args.fields || DEFAULT_FIELDS,
             });
-            const data = await apiRequest(`/${args.campaign_id}/insights`, params);
+            const data = await apiRequest(`/${args.campaign_id}/insights`, "GET", undefined, params);
             return toolResult(data);
         }
         catch (error) {
@@ -99,7 +99,7 @@ export function registerInsightTools(server) {
                 ...args,
                 fields: args.fields || DEFAULT_FIELDS,
             });
-            const data = await apiRequest(`/${args.adset_id}/insights`, params);
+            const data = await apiRequest(`/${args.adset_id}/insights`, "GET", undefined, params);
             return toolResult(data);
         }
         catch (error) {
@@ -124,7 +124,7 @@ export function registerInsightTools(server) {
                 ...args,
                 fields: args.fields || DEFAULT_FIELDS,
             });
-            const data = await apiRequest(`/${args.ad_id}/insights`, params);
+            const data = await apiRequest(`/${args.ad_id}/insights`, "GET", undefined, params);
             return toolResult(data);
         }
         catch (error) {

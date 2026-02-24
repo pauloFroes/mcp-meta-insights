@@ -8,10 +8,10 @@ export class MetaApiError extends Error {
         this.name = "MetaApiError";
     }
 }
-export async function apiRequest(endpoint, queryParams) {
+export async function apiRequest(endpoint, method = "GET", body, queryParams) {
     const params = new URLSearchParams();
     params.set("access_token", ACCESS_TOKEN);
-    if (queryParams) {
+    if (method === "GET" && queryParams) {
         for (const [key, value] of Object.entries(queryParams)) {
             if (value !== undefined && value !== "") {
                 params.set(key, value);
@@ -19,7 +19,14 @@ export async function apiRequest(endpoint, queryParams) {
         }
     }
     const url = `${BASE_URL}${endpoint}?${params.toString()}`;
-    const response = await fetch(url);
+    const fetchBody = method !== "GET" && body
+        ? JSON.stringify(body)
+        : undefined;
+    const response = await fetch(url, {
+        method,
+        headers: fetchBody ? { "Content-Type": "application/json" } : undefined,
+        body: fetchBody,
+    });
     if (!response.ok) {
         const body = (await response.json().catch(() => ({})));
         const msg = body.error?.message || response.statusText;
@@ -45,7 +52,7 @@ export async function apiRequestAllPages(endpoint, queryParams) {
             ...queryParams,
             after,
         };
-        const result = await apiRequest(endpoint, params);
+        const result = await apiRequest(endpoint, "GET", undefined, params);
         if (result.data) {
             all.push(...result.data);
         }

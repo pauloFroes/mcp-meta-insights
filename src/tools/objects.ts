@@ -168,7 +168,7 @@ export function registerObjectTools(server: McpServer) {
     },
     async (args) => {
       try {
-        const data = await apiRequest(`/${AD_ACCOUNT_ID}`, {
+        const data = await apiRequest(`/${AD_ACCOUNT_ID}`, "GET", undefined, {
           fields:
             args.fields ||
             "id,name,account_status,currency,timezone_name,timezone_offset_hours_utc,amount_spent,balance,spend_cap,business_name,business_city,business_country_code",

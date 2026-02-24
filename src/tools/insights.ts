@@ -63,7 +63,7 @@ export function registerInsightTools(server: McpServer) {
           ...args,
           fields: args.fields || DEFAULT_FIELDS,
         });
-        const data = await apiRequest(`/${AD_ACCOUNT_ID}/insights`, params);
+        const data = await apiRequest(`/${AD_ACCOUNT_ID}/insights`, "GET", undefined, params);
         return toolResult(data);
       } catch (error) {
         return toolError(`Failed to get account insights: ${(error as Error).message}`);
@@ -93,7 +93,7 @@ export function registerInsightTools(server: McpServer) {
           ...args,
           fields: args.fields || DEFAULT_FIELDS,
         });
-        const data = await apiRequest(`/${args.campaign_id}/insights`, params);
+        const data = await apiRequest(`/${args.campaign_id}/insights`, "GET", undefined, params);
         return toolResult(data);
       } catch (error) {
         return toolError(`Failed to get campaign insights: ${(error as Error).message}`);
@@ -123,7 +123,7 @@ export function registerInsightTools(server: McpServer) {
           ...args,
           fields: args.fields || DEFAULT_FIELDS,
         });
-        const data = await apiRequest(`/${args.adset_id}/insights`, params);
+        const data = await apiRequest(`/${args.adset_id}/insights`, "GET", undefined, params);
         return toolResult(data);
       } catch (error) {
         return toolError(`Failed to get ad set insights: ${(error as Error).message}`);
@@ -153,7 +153,7 @@ export function registerInsightTools(server: McpServer) {
           ...args,
           fields: args.fields || DEFAULT_FIELDS,
         });
-        const data = await apiRequest(`/${args.ad_id}/insights`, params);
+        const data = await apiRequest(`/${args.ad_id}/insights`, "GET", undefined, params);
         return toolResult(data);
       } catch (error) {
         return toolError(`Failed to get ad insights: ${(error as Error).message}`);

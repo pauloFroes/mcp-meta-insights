@@ -33,12 +33,14 @@ interface PaginatedResponse<T> {
 
 export async function apiRequest<T>(
   endpoint: string,
+  method: "GET" | "POST" | "DELETE" = "GET",
+  body?: Record<string, unknown>,
   queryParams?: Record<string, string | undefined>,
 ): Promise<T> {
   const params = new URLSearchParams();
   params.set("access_token", ACCESS_TOKEN);
 
-  if (queryParams) {
+  if (method === "GET" && queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
       if (value !== undefined && value !== "") {
         params.set(key, value);
@@ -48,7 +50,15 @@ export async function apiRequest<T>(
 
   const url = `${BASE_URL}${endpoint}?${params.toString()}`;
 
-  const response = await fetch(url);
+  const fetchBody = method !== "GET" && body
+    ? JSON.stringify(body)
+    : undefined;
+
+  const response = await fetch(url, {
+    method,
+    headers: fetchBody ? { "Content-Type": "application/json" } : undefined,
+    body: fetchBody,
+  });
 
   if (!response.ok) {
     const body = (await response.json().catch(() => ({}))) as GraphApiError;
@@ -90,7 +100,7 @@ export async function apiRequestAllPages<T>(
       after,
     };
 
-    const result = await apiRequest<PaginatedResponse<T>>(endpoint, params);
+    const result = await apiRequest<PaginatedResponse<T>>(endpoint, "GET", undefined, params);
 
     if (result.data) {
       all.push(...result.data);

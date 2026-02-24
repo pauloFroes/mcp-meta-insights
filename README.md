@@ -1,6 +1,6 @@
 <img src="assets/meta-logo.jpg" alt="Meta" width="200">
 
-# mcp-meta-insights
+# mcp-meta-marketing
 
 MCP server that wraps the [Meta Marketing API](https://developers.facebook.com/docs/marketing-apis/) (Graph API v25.0) as semantic tools for LLM agents.
 
@@ -13,11 +13,11 @@ Works with **Claude Code**, **Codex**, **Claude Desktop**, **Cursor**, **VS Code
 Install in one command — just replace `your-token` and `your-account-id`:
 
 ```bash
-claude mcp add meta-insights \
+claude mcp add meta-marketing \
   --transport stdio \
   -e META_ACCESS_TOKEN=your-token \
   -e META_AD_ACCOUNT_ID=your-account-id \
-  -- npx -y github:pauloFroes/mcp-meta-insights
+  -- npx -y github:pauloFroes/mcp-meta-marketing
 ```
 
 Then just ask in natural language:
@@ -26,16 +26,23 @@ Then just ask in natural language:
 
 ## What you can do
 
+**Analyze performance:**
 ```
 "How much did I spend in the last 7 days?"
 "Compare CPC and CTR across all active campaigns this month"
 "Which ad set has the lowest cost per conversion?"
-"Show me a daily breakdown of spend and impressions for campaign 12345"
-"List all paused campaigns and their lifetime spend"
 "Break down last week's results by age and gender"
 "What's my overall ROAS this month?"
-"Which ads have the highest CTR in ad set 67890?"
 "Give me a full performance summary of my account for February"
+```
+
+**Manage campaigns:**
+```
+"Create a new traffic campaign called 'Summer Sale' with R$50/day budget"
+"Pause all campaigns with CPC above R$2.00"
+"Duplicate ad set 12345 with a new targeting for ages 18-24"
+"Create an ad using creative 67890 in my best performing ad set"
+"Archive all campaigns that ended last month"
 ```
 
 ## Available Tools
@@ -49,7 +56,7 @@ Then just ask in natural language:
 | `get_adset_insights` | Get insights for a specific ad set |
 | `get_ad_insights` | Get insights for a specific ad |
 
-### Objects
+### Listing
 
 | Tool | Description |
 | --- | --- |
@@ -57,6 +64,21 @@ Then just ask in natural language:
 | `list_adsets` | List ad sets, optionally filtered by campaign |
 | `list_ads` | List ads, optionally filtered by ad set |
 | `get_ad_account` | Get ad account details (name, currency, timezone, balance) |
+
+### Management
+
+| Tool | Description |
+| --- | --- |
+| `create_campaign` | Create a new campaign with objective, budget, and bid strategy |
+| `update_campaign` | Update campaign name, status, budget, or bid strategy |
+| `delete_campaign` | Delete a campaign (irreversible) |
+| `create_adset` | Create an ad set with targeting, budget, and optimization goal |
+| `update_adset` | Update ad set targeting, budget, status, or schedule |
+| `delete_adset` | Delete an ad set (irreversible) |
+| `create_ad` | Create an ad linking a creative to an ad set |
+| `update_ad` | Update ad name, status, or swap creative |
+| `delete_ad` | Delete an ad (irreversible) |
+| `create_adcreative` | Create an ad creative (image, video, or carousel) |
 
 ## Installation
 
@@ -70,19 +92,19 @@ You need two environment variables:
 ### Claude Code
 
 ```bash
-claude mcp add meta-insights \
+claude mcp add meta-marketing \
   --transport stdio \
   -e META_ACCESS_TOKEN=your-token \
   -e META_AD_ACCOUNT_ID=your-account-id \
-  -- npx -y github:pauloFroes/mcp-meta-insights
+  -- npx -y github:pauloFroes/mcp-meta-marketing
 ```
 
 ### Codex
 
 ```toml
-[mcp_servers.meta-insights]
+[mcp_servers.meta-marketing]
 command = "npx"
-args = ["-y", "github:pauloFroes/mcp-meta-insights"]
+args = ["-y", "github:pauloFroes/mcp-meta-marketing"]
 env_vars = ["META_ACCESS_TOKEN", "META_AD_ACCOUNT_ID"]
 ```
 
@@ -93,9 +115,9 @@ Add to `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "meta-insights": {
+    "meta-marketing": {
       "command": "npx",
-      "args": ["-y", "github:pauloFroes/mcp-meta-insights"],
+      "args": ["-y", "github:pauloFroes/mcp-meta-marketing"],
       "env": {
         "META_ACCESS_TOKEN": "your-token",
         "META_AD_ACCOUNT_ID": "your-account-id"
@@ -112,9 +134,9 @@ Add to `~/.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
-    "meta-insights": {
+    "meta-marketing": {
       "command": "npx",
-      "args": ["-y", "github:pauloFroes/mcp-meta-insights"],
+      "args": ["-y", "github:pauloFroes/mcp-meta-marketing"],
       "env": {
         "META_ACCESS_TOKEN": "your-token",
         "META_AD_ACCOUNT_ID": "your-account-id"
@@ -131,9 +153,9 @@ Add to `.vscode/mcp.json` in your project:
 ```json
 {
   "servers": {
-    "meta-insights": {
+    "meta-marketing": {
       "command": "npx",
-      "args": ["-y", "github:pauloFroes/mcp-meta-insights"],
+      "args": ["-y", "github:pauloFroes/mcp-meta-marketing"],
       "env": {
         "META_ACCESS_TOKEN": "your-token",
         "META_AD_ACCOUNT_ID": "your-account-id"
@@ -150,9 +172,9 @@ Add to `~/.codeium/windsurf/mcp_config.json`:
 ```json
 {
   "mcpServers": {
-    "meta-insights": {
+    "meta-marketing": {
       "command": "npx",
-      "args": ["-y", "github:pauloFroes/mcp-meta-insights"],
+      "args": ["-y", "github:pauloFroes/mcp-meta-marketing"],
       "env": {
         "META_ACCESS_TOKEN": "your-token",
         "META_AD_ACCOUNT_ID": "your-account-id"
@@ -168,7 +190,7 @@ All methods require a **Meta App**. If you don't have one yet:
 
 1. Go to [developers.facebook.com](https://developers.facebook.com/) → **My Apps** → **Create App**
 2. Use case: **Other** → App type: **Business**
-3. Name it (e.g. `mcp-meta-insights`), set contact email
+3. Name it (e.g. `mcp-meta-marketing`), set contact email
 4. Associate with your **Business Manager** (Business Portfolio)
 5. In the app dashboard, find **Marketing API** and click **Set Up**
 
@@ -204,7 +226,7 @@ Create a new System User or reuse an existing one.
 
 7. On the System User page, click **Generate New Token**
 8. Select your app in the dropdown
-9. Check the scopes: **`ads_read`** and **`business_management`**
+9. Check the scopes: **`ads_read`**, **`ads_management`**, and **`business_management`**
 10. Click **Generate Token**
 11. **Copy it immediately** — it's only shown once
 
@@ -217,7 +239,7 @@ This token **never expires** unless you revoke it or remove the System User.
 Quick method entirely in the browser. No System User needed.
 
 1. Go to your app dashboard at [developers.facebook.com](https://developers.facebook.com/) → **Marketing API → Tools**
-2. Select permissions: **`ads_read`** → click **Get Token**
+2. Select permissions: **`ads_read`** and **`ads_management`** → click **Get Token**
 3. Authorize when prompted — this generates a short-lived token (~1 hour)
 4. Go to [Access Token Debugger](https://developers.facebook.com/tools/debug/accesstoken/)
 5. Paste the token → click **Debug**
