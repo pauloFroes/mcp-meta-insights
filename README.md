@@ -190,10 +190,10 @@ All methods require a **Meta App**. If you don't have one yet:
 
 1. Go to [developers.facebook.com](https://developers.facebook.com/) → **My Apps** → **Create App**
 2. Name it (e.g. `ads-marketing-tool`) — Meta blocks brand terms like "meta", "fb", "insta" in app names
-3. In **Use cases**, select exactly these two:
-   - **"Create and manage ads with the Marketing API"** — grants `ads_management` (create/update/delete campaigns)
-   - **"Measure ad performance data with the Marketing API"** — grants `ads_read` (insights and metrics)
-   > Do **not** select "Create and manage app ads with the Meta Ads Manager" — that is for app-install campaigns, not programmatic API access.
+3. In **Use cases**, filter by **"Ads and monetization"** and select exactly these two:
+   - **"Create and manage ads with the Marketing API"** — programmatic campaign management (CRUD)
+   - **"Measure ad performance data with the Marketing API"** — performance insights and metrics
+   > Do **not** select "Create and manage app ads with the Meta Ads Manager" — it explicitly does **not** include Marketing API access.
 4. Associate with your **Business Manager** (Business Portfolio)
 5. Complete the remaining steps and create the app
 
