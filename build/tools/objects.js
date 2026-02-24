@@ -15,7 +15,7 @@ export function registerObjectTools(server) {
                 .optional()
                 .describe("Comma-separated fields. Default: id,name,status,effective_status,objective,daily_budget,lifetime_budget,bid_strategy,start_time,stop_time"),
             effective_status: campaignStatus,
-            limit: z.string().optional().describe("Items per page (default: 25, max: 100)"),
+            limit: z.string().optional().describe("Items per page (default: 100, max: 100)"),
         },
         annotations: {
             readOnlyHint: true,
@@ -27,7 +27,7 @@ export function registerObjectTools(server) {
             const params = {
                 fields: args.fields ||
                     "id,name,status,effective_status,objective,daily_budget,lifetime_budget,bid_strategy,start_time,stop_time",
-                limit: args.limit,
+                limit: args.limit || "100",
             };
             if (args.effective_status) {
                 params["effective_status"] = JSON.stringify([args.effective_status]);
@@ -52,7 +52,7 @@ export function registerObjectTools(server) {
                 .optional()
                 .describe("Filter ad sets by campaign ID. If set, queries /{campaign_id}/adsets instead of account-level."),
             effective_status: campaignStatus,
-            limit: z.string().optional().describe("Items per page (default: 25, max: 100)"),
+            limit: z.string().optional().describe("Items per page (default: 100, max: 100)"),
         },
         annotations: {
             readOnlyHint: true,
@@ -64,7 +64,7 @@ export function registerObjectTools(server) {
             const params = {
                 fields: args.fields ||
                     "id,name,status,effective_status,campaign_id,daily_budget,lifetime_budget,targeting,optimization_goal,billing_event,start_time,end_time",
-                limit: args.limit,
+                limit: args.limit || "100",
             };
             if (args.effective_status) {
                 params["effective_status"] = JSON.stringify([args.effective_status]);
@@ -92,7 +92,7 @@ export function registerObjectTools(server) {
                 .optional()
                 .describe("Filter ads by ad set ID. If set, queries /{adset_id}/ads instead of account-level."),
             effective_status: campaignStatus,
-            limit: z.string().optional().describe("Items per page (default: 25, max: 100)"),
+            limit: z.string().optional().describe("Items per page (default: 100, max: 100)"),
         },
         annotations: {
             readOnlyHint: true,
@@ -104,7 +104,7 @@ export function registerObjectTools(server) {
             const params = {
                 fields: args.fields ||
                     "id,name,status,effective_status,adset_id,campaign_id,creative",
-                limit: args.limit,
+                limit: args.limit || "100",
             };
             if (args.effective_status) {
                 params["effective_status"] = JSON.stringify([args.effective_status]);

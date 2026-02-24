@@ -71,7 +71,7 @@ export function buildInsightsParams(args) {
         level: args.level,
         filtering: args.filtering,
         breakdowns: args.breakdowns,
-        limit: args.limit,
+        limit: args.limit || "5000",
     };
     if (args.since && args.until) {
         params.time_range = JSON.stringify({

@@ -34,7 +34,7 @@ const insightsSchema = {
     .describe(
       "Comma-separated breakdowns. Common: age, gender, country, publisher_platform, device_platform, impression_device"
     ),
-  limit: z.string().optional().describe("Max number of rows to return (default: 25)"),
+  limit: z.string().optional().describe("Max number of rows to return (default: 5000, max: 5000)"),
 };
 
 export function registerInsightTools(server: McpServer) {
