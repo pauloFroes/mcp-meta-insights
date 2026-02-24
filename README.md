@@ -217,7 +217,7 @@ Create a new System User or reuse an existing one.
 **2. Assign ad account assets:**
 
 4. Click the System User → **Add Assets** → **Ad Accounts**
-5. Select the ad account(s) you want to access → permission level: **View performance**
+5. Select the ad account(s) you want to access → permission level: **Manage campaigns**
 6. Click **Save Changes**
 
 > Without this step the token won't have access to any ad account data.
