@@ -20,9 +20,23 @@ claude mcp add meta-insights \
   -- npx -y github:pauloFroes/mcp-meta-insights
 ```
 
-Then ask Claude: _"List all my active campaigns"_ or _"How much did I spend this week?"_
+Then just ask in natural language:
 
 > Don't have a token yet? See [How to get your Access Token](#how-to-get-your-access-token) below.
+
+## What you can do
+
+```
+"How much did I spend in the last 7 days?"
+"Compare CPC and CTR across all active campaigns this month"
+"Which ad set has the lowest cost per conversion?"
+"Show me a daily breakdown of spend and impressions for campaign 12345"
+"List all paused campaigns and their lifetime spend"
+"Break down last week's results by age and gender"
+"What's my overall ROAS this month?"
+"Which ads have the highest CTR in ad set 67890?"
+"Give me a full performance summary of my account for February"
+```
 
 ## Available Tools
 
@@ -233,22 +247,6 @@ https://graph.facebook.com/v25.0/oauth/access_token?
 4. The response contains your long-lived `access_token` (60 days) and `expires_in`
 
 > Keep your App Secret safe — never expose it client-side.
-
----
-
-## Common Usage Examples
-
-**Get last 7 days spend:**
-> "How much did I spend in the last 7 days?"
-
-**Campaign performance breakdown:**
-> "Show me insights for all campaigns this month"
-
-**Find active campaigns:**
-> "List all active campaigns"
-
-**Detailed ad set analysis:**
-> "Get insights for ad set 123456 broken down by age and gender"
 
 ## License
 
