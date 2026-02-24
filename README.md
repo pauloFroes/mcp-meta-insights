@@ -212,7 +212,7 @@ Create a new System User or reuse an existing one.
 
 1. Go to [business.facebook.com](https://business.facebook.com/) → **Business Settings**
 2. Navigate to **Users → System Users**
-3. Create a new one (**Add** → name: `mcp-ads-reader` → role: **Admin**), or select an existing System User
+3. Create a new one (**Add** → name: `mcp-marketing` → role: **Admin**), or select an existing System User
 
 **2. Assign ad account assets:**
 
