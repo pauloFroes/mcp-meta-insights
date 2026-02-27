@@ -98,6 +98,8 @@ Three installation scopes are available:
 | **project** | `-s project` | `.claude/mcp.json` | Shared with team via git |
 | **user** | `-s user` | `~/.claude/mcp.json` | All your projects |
 
+**Quick setup (inline env vars):**
+
 ```bash
 claude mcp add meta-marketing -s user \
   -e META_ACCESS_TOKEN=your-token \
@@ -106,6 +108,32 @@ claude mcp add meta-marketing -s user \
 ```
 
 > Replace `-s user` with `-s local` or `-s project` as needed.
+
+**Persistent setup (.env file):**
+
+Add to your `.mcp.json`:
+
+```json
+{
+  "meta-ads": {
+    "command": "npx",
+    "args": ["-y", "github:pauloFroes/mcp-meta-ads"],
+    "env": {
+      "META_ACCESS_TOKEN": "${META_ACCESS_TOKEN}",
+      "META_AD_ACCOUNT_ID": "${META_AD_ACCOUNT_ID}"
+    }
+  }
+}
+```
+
+Then define the values in your `.env` file:
+
+```
+META_ACCESS_TOKEN=your-access-token
+META_AD_ACCOUNT_ID=your-ad-account-id
+```
+
+> See `.env.example` for all required variables.
 
 ### Codex
 
