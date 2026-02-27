@@ -13,8 +13,7 @@ Works with **Claude Code**, **Codex**, **Claude Desktop**, **Cursor**, **VS Code
 Install in one command — just replace `your-token` and `your-account-id`:
 
 ```bash
-claude mcp add meta-marketing \
-  --transport stdio \
+claude mcp add meta-marketing -s user \
   -e META_ACCESS_TOKEN=your-token \
   -e META_AD_ACCOUNT_ID=your-account-id \
   -- npx -y github:pauloFroes/mcp-meta-marketing
@@ -91,13 +90,22 @@ You need two environment variables:
 
 ### Claude Code
 
+Three installation scopes are available:
+
+| Scope | Flag | Config file | Use case |
+|-------|------|-------------|----------|
+| **local** | `-s local` | `.mcp.json` | This project only (default) |
+| **project** | `-s project` | `.claude/mcp.json` | Shared with team via git |
+| **user** | `-s user` | `~/.claude/mcp.json` | All your projects |
+
 ```bash
-claude mcp add meta-marketing \
-  --transport stdio \
+claude mcp add meta-marketing -s user \
   -e META_ACCESS_TOKEN=your-token \
   -e META_AD_ACCOUNT_ID=your-account-id \
   -- npx -y github:pauloFroes/mcp-meta-marketing
 ```
+
+> Replace `-s user` with `-s local` or `-s project` as needed.
 
 ### Codex
 
